@@ -1,1 +1,1 @@
-# cs3630_react_router
+# CS 3630 – Data visualization example
