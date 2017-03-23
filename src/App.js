@@ -7,6 +7,20 @@ import {XYPlot, XAxis, YAxis, HorizontalGridLines, LineSeries} from 'react-vis';
 import '../node_modules/react-vis/dist/style.css';
 
 class App extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            data: []
+        }
+    }
+
+    componentDidMount() {
+        fetch('http://localhost:3080')
+        .then(data => data.ok ? data.json() : Promise.reject())
+        // .then(data => this.setState({data: data})
+        .then(data => this.setState({data}))
+    }
+
     render() {
         return (
             <div className="App">
@@ -18,7 +32,7 @@ class App extends Component {
                     To get started, edit <code>src/App.js</code> and save to reload.
                 </p>
                 
-                <XYPlot
+                {/*<XYPlot
                     width={300}
                     height={300}>
                     <HorizontalGridLines />
@@ -28,6 +42,16 @@ class App extends Component {
                             { x: 2, y: 5 },
                             { x: 3, y: 15 }
                         ]} />
+                    <XAxis />
+                    <YAxis />
+                </XYPlot>*/}
+                
+                <XYPlot
+                    width={300}
+                    height={300}>
+                    <HorizontalGridLines />
+                    <LineSeries
+                        data={this.state.data} />
                     <XAxis />
                     <YAxis />
                 </XYPlot>
